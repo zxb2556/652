@@ -2,15 +2,20 @@
 session_start();
 require('functions.php');
 
-if (empty($_GET['id'])) {
-	header('Location: index2.php');
-	exit();
+if($_SERVER['REQUEST_METHOD'] === 'GET'){
+	if (empty($_GET['id'])) {
+		header('Location: index2.php');
+		exit();
+	} else {
+		$id = $_GET['id'];
+	}
 }
+
 // 投稿を取得する
 $db = db_conn();
 $sql = 'SELECT m.user, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id AND p.id=:id ORDER BY p.created DESC';
 $posts = $db->prepare($sql);
-$posts->bindValue(':id', $_GET['id'], PDO::PARAM_STR);
+$posts->bindValue(':id', $id, PDO::PARAM_STR);
 $posts->execute();
 ?>
 <!DOCTYPE html>
@@ -35,10 +40,10 @@ $posts->execute();
 			if ($post = $posts->fetch()):
 				?>
 				<div class="msg">
-					<img src="member_picture/<?php echo htmlspecialchars($post['picture'], ENT_QUOTES); ?>" width="48" height="48" alt="<?php echo 	 htmlspecialchars($post['user'], ENT_QUOTES); ?>" />
-					<p><?php echo htmlspecialchars($post['message'], ENT_QUOTES);
-					?><span class="name">（<?php echo htmlspecialchars($post['user'], ENT_QUOTES); ?>）</span></p>
-					<p class="day"><?php echo htmlspecialchars($post['created'], ENT_QUOTES); ?></p>
+					<img src="member_picture/<?php echo htmlspecialchars($post['picture'], ENT_QUOTES, 'UTF-8'); ?>" width="48" height="48" alt="<?php echo htmlspecialchars($post['user'], ENT_QUOTES, 'UTF-8'); ?>" />
+					<p><?php echo htmlspecialchars($post['message'], ENT_QUOTES, 'UTF-8');
+					?><span class="name">（<?php echo htmlspecialchars($post['user'], ENT_QUOTES, 'UTF-8'); ?>）</span></p>
+					<p class="day"><?php echo htmlspecialchars($post['created'], ENT_QUOTES, 'UTF-8'); ?></p>
 				</div>
 				<?php
 			else:
