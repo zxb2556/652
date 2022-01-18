@@ -5,7 +5,7 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	// ログインしている
 	$_SESSION['time'] = time();
     $db = db_conn();
-	$sql = 'SELECT * FROM members WHERE id= :id';
+	  $sql = 'SELECT * FROM members WHERE id= :id';
     $members = $db->prepare($sql);
     $members->bindValue(':id', $_SESSION['id'], PDO::PARAM_INT);
     $members->execute();
@@ -21,14 +21,14 @@ if (!empty($_POST)) {
 	if ($_POST['message'] != '') {
 		$sql = 'INSERT INTO posts SET member_id= :id, message= :message, reply_post_id= :reply_post_id, created=NOW()';
 		$message = $db->prepare($sql);
-        $message->bindValue(':id', $member['id'], PDO::PARAM_INT);
-        $message->bindValue(':message', $_POST['message'], PDO::PARAM_STR);
-        if($_POST['reply_post_id'] == '') {
-           $message->bindValue(':reply_post_id', 0, PDO::PARAM_INT);  // 未指定の場合 0 を設定
-        } else {
-           $message->bindValue(':reply_post_id', $_POST['reply_post_id'], PDO::PARAM_INT);
-        }
-        $message->execute();
+    $message->bindValue(':id', $member['id'], PDO::PARAM_INT);
+    $message->bindValue(':message', $_POST['message'], PDO::PARAM_STR);
+    if($_POST['reply_post_id'] == '') {
+       $message->bindValue(':reply_post_id', 0, PDO::PARAM_INT);  // 未指定の場合 0 を設定
+    } else {
+       $message->bindValue(':reply_post_id', $_POST['reply_post_id'], PDO::PARAM_INT);
+    }
+    $message->execute();
 		header('Location: index2.php');
 		exit();
 	}
