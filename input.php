@@ -1,6 +1,6 @@
 <?php
-require('functions.php');
 session_start();
+require('functions.php');
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
    if (!empty($_POST)) {
 	 // エラー項目の確認
