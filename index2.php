@@ -46,10 +46,10 @@ $sql = 'SELECT COUNT(*) AS cnt FROM posts';
 $counts = $db->prepare($sql);
 $counts->execute();
 $cnt = $counts->fetch();
-$maxPage = ceil($cnt['cnt'] / 5);
+$maxPage = ceil($cnt['cnt'] / PAGING);
 $page = min($page, $maxPage);
 
-$start = ($page - 1) * 5;
+$start = ($page - 1) * PAGING;
 $start = max(0, $start);
 
 /* 期末課題　１） 投稿されたデータを投稿した新しい順に表示させる */
@@ -149,8 +149,7 @@ endforeach;
 if ($page > 1) {
 ?>
 
-<?php /* ３）-1  掲示板画面のページネーションを完成させる */ ?>
-<li><a href="index2.php?page=<?php print(1); ?>">前のページへ</a></li>
+<li><a href="index2.php?page=<?php print($page - 1); ?>">前のページへ</a></li>
 <?php
 } else {
 ?>
