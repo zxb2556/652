@@ -48,7 +48,7 @@ $posts->execute();
 				<?php
 			else:
 				?>
-				<p>その投稿は削除されたか、URLが間違えています</p>
+				<p>その投稿は削除されたか、URLが間違っています</p>
 				<?php
 			endif;
 			?>
