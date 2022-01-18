@@ -9,7 +9,7 @@ if (isset($_SESSION['id'])) {
     $dbh = db_conn();
     $sql = 'SELECT * FROM posts WHERE id=:id';
     $messages = $dbh->prepare($sql);
-/* 期末課題　５）削除処理を完成させる  SQLインジェクション対策処理 */
+/* 期末課題　５）バインド処理を追加する */
     $messages->execute();
 	$message = $messages->fetch();
 

@@ -100,7 +100,7 @@ function makeLink($value) {
   	<div style="text-align: right"><a href="logout.php">ログアウト</a></div>
     <form action="" method="post">
       <dl>
-      <?php /* ２）掲示板の投稿画面に、会員登録時に入力したニックネームを表示させる */ ?>
+        <?php /* ２）掲示板の投稿画面に、会員登録時に入力したニックネームを表示させる */ ?>
         <dt><?php echo 'ゲスト'; ?>さん、メッセージをどうぞ</dt>
         <dd>
           <textarea name="message" cols="50" rows="5"><?php echo hsc($message); ?></textarea>
@@ -160,7 +160,7 @@ if ($page > 1) {
 <?php
 if ($page < $maxPage) {
 ?>
-<?php /* ３）-2  掲示板画面のページネーションを完成させる */ ?>
+<?php /* ３） 掲示板画面のページネーションを完成させる */ ?>
 <li><a href="index2.php?page=<?php print(1); ?>">次のページへ</a></li>
 <?php
 } else {
