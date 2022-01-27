@@ -9,7 +9,7 @@ define('DB_PASS','');
 /* PHPのエラーを表示するように設定 */
 error_reporting(E_ALL & ~E_NOTICE);
 /* */
-define('PWD_LENGTH',4);   // パスワード長
+define('PWD_LENGTH',5);   // パスワード長
 define('PAGING',5);      // ページネーション単位
 
 
